@@ -25,6 +25,10 @@ else:
 
 st.header("Aplicación para Eliminar Fondo")
 st.subheader("Sube una Imagen")
+
+# Añadir una explicación en español antes del widget de subida de archivos
+st.markdown("Arrastra y suelta tu archivo aquí o selecciona uno de tu dispositivo. (Límite: 200MB por archivo • JPG, JPEG, PNG)")
+
 upload_image = st.file_uploader("Elige una imagen...", type=["jpg", "jpeg", "png"])
 
 if upload_image is not None:
@@ -38,3 +42,4 @@ if upload_image is not None:
             image_data = f.read()
             st.download_button("Descargar Imagen Procesada", data=image_data, file_name="imagen_procesada.png")
             os.remove("processed_image.png")
+
