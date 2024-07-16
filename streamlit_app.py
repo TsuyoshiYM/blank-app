@@ -21,20 +21,20 @@ image_path = "assets/camaroremove.JPG"
 if os.path.exists(image_path):
     st.image(image_path)
 else:
-    st.warning(f"Image {image_path} not found.")
+    st.warning(f"La imagen {image_path} no fue encontrada.")
 
-st.header("Background Removal App")
-st.subheader("Upload an Image")
-upload_image = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
+st.header("Aplicación para Eliminar Fondo")
+st.subheader("Sube una Imagen")
+upload_image = st.file_uploader("Elige una imagen...", type=["jpg", "jpeg", "png"])
 
 if upload_image is not None:
-    st.image(upload_image, caption="Uploaded Image", use_column_width=True)
-    remove_button = st.button(label="Remove Background")
+    st.image(upload_image, caption="Imagen subida", use_column_width=True)
+    remove_button = st.button(label="Quitar Fondo")
     if remove_button:
         processed_image = process_image(upload_image)
-        st.image(processed_image, caption="Background Removed", use_column_width=True)
+        st.image(processed_image, caption="Fondo Eliminado", use_column_width=True)
         processed_image.save("processed_image.png")
         with open("processed_image.png", "rb") as f:
             image_data = f.read()
-            st.download_button("Download Processed Image", data=image_data, file_name="processed_image.png")
+            st.download_button("Descargar Imagen Procesada", data=image_data, file_name="imagen_procesada.png")
             os.remove("processed_image.png")
